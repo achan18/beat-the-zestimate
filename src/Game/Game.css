@@ -1,0 +1,95 @@
+.Container {
+    padding: 40px 160px;
+    font-family: 'Lato', sans-serif;
+    background-image: url("./IMG_5649.jpg");
+}
+
+.Title {
+    width: 100%;
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #0074e5;
+}
+
+.PropertyWrapper {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.MapAndImageGrid {
+    padding: 20px;
+    display: grid;
+    margin-top: 25px;
+    grid-gap: 5px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.Image {
+    height: 300px;
+    width: 100%;
+    background-color: #c7c7c7;
+    object-fit: cover
+}
+
+.MapContainer {
+    height: 300px;
+    width: auto;
+    background-color: #292956;
+    position: relative
+}
+
+.Address {
+    font-size: 35px;
+    font-weight: bold;
+    margin: 10px;
+    line-height: 40px;
+    text-align: center
+}
+
+.FactsAndFeaturesTitle {
+    text-align: center; 
+    font-size: 32px; 
+    font-weight: bold
+}
+
+.FactsAndFeaturesGrid {
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr)
+}
+
+.InputBoxWrapper {
+    display: grid;
+    margin: 30px;
+    grid-row: 3/4;
+    grid-column: 3/4;
+    padding: 10px;
+    background-color: #ccc;
+    border-radius: 5px;
+    grid-template-columns: auto 100px;
+    height: 50px;
+    box-shadow: -5px 6px 4px #00000012
+}
+
+.InputBox {
+    margin: 0 10px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    padding: 0 20px;
+    font-size: 18px
+}
+
+.SubmitBtn {
+    font-size: 18px;
+    color: white;
+    border-radius: 6px;
+    background-color: #f2af34;
+    border: 1px solid #f2af34;
+    /* background-color: #fd6067;
+    border: 1px solid #fd6067; */
+    font-weight: bold;
+    outline: none
+}

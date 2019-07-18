@@ -1,5 +1,7 @@
 .App {
-  text-align: center;
+  padding: '40px 160px';
+    font-family: 'Lato; sans-serif';
+    background-image: "url(" + "../IMG_5649.jpg" + ")";
 }
 
 .App-logo {
@@ -30,4 +32,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.Test {
+  background: 'red'
 }
