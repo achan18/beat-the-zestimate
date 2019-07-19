@@ -1,0 +1,17 @@
+{
+    "latitude": "34.144442",
+    "longitude": "-118.654084",
+    "features": {
+        "bedroomcnt": 4,
+        "bathroomcnt": 3.5,
+        "fireplacecnt": 1,
+        "finishedsquareft15": 2560,
+        "garagecarcnt": 3,
+        "hashottuborspa": 1,
+        "numberofstories": 2,
+        "numberofpools": 1,
+        "roomcnt": 6,
+        "yearbuilt": 1999,
+        "lotsizesquarefeet": 5020
+    }
+}
