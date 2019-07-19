@@ -1,0 +1,71 @@
+.ScoreGrid {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+}
+
+.PricesGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 50px 50px 40px;
+    grid-column-gap: 20px;
+}
+
+.PriceLabel {
+    font-size: 26px;
+    text-align: right;
+    font-weight: bold;
+}
+
+.PriceValue {
+    font-size: 26px;
+}
+
+.PlayAgainBtn {
+    background-color: #f2af34;
+    border: 1px solid #f2af34;
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 6px;
+    margin: auto;
+    display: block;
+    width: 60%;
+    outline: none;
+    color: white;
+    font-weight: bold;
+}
+
+.PlayAgainBtn:hover {
+    cursor: pointer;
+    background-color: #f19c1c;
+    transition: 0.3s;
+}
+
+a {
+    text-decoration: none;
+}
+
+.LeaderboardTitle {
+    text-align: center;
+    font-size: 40px;
+}
+
+.LeaderboardGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 50%;
+    min-width: 500px;
+    margin: auto;
+}
+
+.LeaderboardLabel {
+    font-size: 25px;
+    text-align: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #444040;
+}
+
+.LeaderboardName, .LeaderboardScore {
+    font-size: 25px;
+    text-align: center;
+    margin: 10px auto;
+}

@@ -1,22 +1,12 @@
-.Container {
-    padding: 40px 160px;
-    font-family: 'Lato', sans-serif;
-    background-image: url("./IMG_5649.jpg");
-}
-
-.Title {
-    width: 100%;
-    font-size: 50px;
-    text-align: center;
-    margin-bottom: 40px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    color: #0074e5;
-}
 
 .PropertyWrapper {
     max-width: 1200px;
     margin: auto;
+}
+
+.SignAndMapImageGrid {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
 }
 
 .MapAndImageGrid {
@@ -60,36 +50,6 @@
     grid-template-columns: repeat(4, 1fr)
 }
 
-.InputBoxWrapper {
-    display: grid;
-    margin: 30px;
-    grid-row: 3/4;
-    grid-column: 3/4;
-    padding: 10px;
-    background-color: #ccc;
-    border-radius: 5px;
-    grid-template-columns: auto 100px;
-    height: 50px;
-    box-shadow: -5px 6px 4px #00000012
-}
-
-.InputBox {
-    margin: 0 10px;
-    border-radius: 6px;
-    border: none;
-    outline: none;
-    padding: 0 20px;
-    font-size: 18px
-}
-
-.SubmitBtn {
-    font-size: 18px;
-    color: white;
-    border-radius: 6px;
-    background-color: #f2af34;
-    border: 1px solid #f2af34;
-    /* background-color: #fd6067;
-    border: 1px solid #fd6067; */
-    font-weight: bold;
-    outline: none
+.SubmitBtn:hover {
+    cursor: pointer;
 }

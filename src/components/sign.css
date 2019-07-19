@@ -1,0 +1,16 @@
+
+.SubmitBtn {
+    font-size: 18px;
+    color: white;
+    border-radius: 6px;
+    background-color: #f2af34;
+    border: 1px solid #f2af34;
+    font-weight: bold;
+    outline: none;
+}
+
+.SubmitBtn:hover {
+    cursor: pointer;
+    background-color: #f19c1c;
+    transition: 0.3s;
+}

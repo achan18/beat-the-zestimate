@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBed, faToilet, faFire, faWarehouse, faBath, faSwimmer, 
-    faDoorOpen, faHome, faLayerGroup, faVectorSquare } from '@fortawesome/free-solid-svg-icons'
+    faDoorOpen, faHome, faLayerGroup, faVectorSquare, faSquare } from '@fortawesome/free-solid-svg-icons'
 
 
     var data = {
@@ -54,6 +54,11 @@ import { faBed, faToilet, faFire, faWarehouse, faBath, faSwimmer,
             name: "Lot Size",
             color: "#e1193b",
             icon: faVectorSquare
+        },
+        finishedsquareft15: {
+            name: "Square Ft.",
+            color: "#ea4747",
+            icon: faSquare
         }
     }
 

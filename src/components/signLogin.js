@@ -1,29 +1,34 @@
 import React from 'react';
-import NumberFormat from 'react-number-format';
-import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import './sign.css'
 
-export default class Sign extends React.Component {
+export default class SignLogin extends React.Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            toResultPage: false,
-            guess: null
+            toGamePage: false,
+            username: null
         }
     }
 
-    getScore = () => {
-        console.log(this.state.guess)
+    goToGameScreen = () => {
+        if (!this.state.username) {
+            return
+        }
 
         this.setState(() => ({
-            toResultPage: true
+            toGamePage: true
         }))
     }
 
     render() {
-        if (this.state.toResultPage) {
-            return <Redirect to='/result' />
+        if (this.state.toGamePage) {
+            return <Redirect to={{
+                pathname: '/game',
+                state: { guess: this.state.username }
+            }} />
         }
 
         return (
@@ -81,16 +86,15 @@ export default class Sign extends React.Component {
 
                     {/* Input Box */}
                     <div style={styles.InputBoxWrapper}>
-                        <NumberFormat 
+                        <input 
                             style={styles.InputBox} 
-                            thousandSeparator={true} 
-                            prefix={'$'}
-                            placeholder="Enter your guess here"
-                            onChange={input => this.setState({guess: input.target.value})}
+                            placeholder="Enter your username"
+                            onChange={input => this.setState({username: input.target.value})}
                         />
                         <button 
-                            style={styles.SubmitBtn}
-                            onClick={this.getScore}
+                            disabled={!this.state.username}
+                            className="SubmitBtn"
+                            onClick={this.goToGameScreen}
                         >
                             SUBMIT
                         </button>
@@ -152,7 +156,7 @@ const styles = {
         gridColumn: '2/3',
         gridRow: '4/5',
         backgroundColor: 'rgb(228, 228, 228)',
-        height: 'auto',
+        height: '200px',
         boxShadow: '-5px 6px 4px #00000012'
     },
 

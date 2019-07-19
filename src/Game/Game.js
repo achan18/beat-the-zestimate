@@ -1,23 +1,47 @@
 import React from 'react';
-import Sign from '../components/sign'
-import FeatureIcon from '../components/feature-icon'
+import SignSubmit from '../components/signSubmit'
+import FeatureIcon from '../components/featureIcon'
 import MyMap from '../components/map'
 import Data from './data.json'
 import './Game.css'
 const axios = require('axios');
+
+var google_api_key = 'AIzaSyCI-HS5B4EwhmmPlZPJmBXad5uZUjGOFHA'
+var image_url = 'https://maps.googleapis.com/maps/api/streetview?size=400x400&location=[ADDRESS]&key=AIzaSyCI-HS5B4EwhmmPlZPJmBXad5uZUjGOFHA'
 
 export default class Home extends React.Component {
 
     constructor(props) {
         super(props);
 
+        const URL =  `localhost:8080/property`;
+
         this.state = {
           latLong: {
-            lat: Data.latitude,
-            lng: Data.longitude,
+            lat: null,
+            lng: null,
           },
-          features: Data.features
+          features: {},
+          image_url: null
         }
+
+        axios.get(URL).then(function (res) {
+          console.log(res)
+
+          this.state = {
+            latLong: {
+              lat: res.latitude,
+              lng: res.longitude,
+            },
+            features: res.features,
+            image_url: res.image_url ? res.image_url : `https://maps.googleapis.com/maps/api/streetview?size=400x400&location=${res.address.label}&key=${google_api_key}`
+          }
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error)
+        })
+
         // this.getImageURL(25252674)
     }
 
@@ -39,19 +63,21 @@ export default class Home extends React.Component {
         return (
           <div className="Container">
       
-            <div style={{display: 'grid', gridTemplateColumns: '2fr 3fr'}}>
+            <div className="SignAndMapImageGrid">
       
               {/* SIGN / INPUT BOX */}
-              <Sign/>
+              <SignSubmit />
       
               {/* PROPERTY INFO */}
               <div>
 
                 <div className="MapAndImageGrid">
+
                   {/* IMAGE OF HOUSE */}
-                  <img src="https://photos.zillowstatic.com/cc_ft_1536/ISucdznq3otfml1000000000.webp" 
+                  <img src={this.state.image_url}
                     className="Image" 
                   />
+
       
                   {/* MAP */}
                   <div className="MapContainer">
