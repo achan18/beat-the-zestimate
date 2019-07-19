@@ -1,0 +1,40 @@
+address: {
+    label: 1415 example road, Cupertino, CA, 95019, USA
+    street_address: 1415 example road,
+    city: Cupertino,
+    state: California,
+    zip_code: 95019,
+    country: USA
+}
+
+//replace the hard coded values for lat and long at latlng=40.714187,-73.961263 with:
+/* util.format(
+  'https://maps.googleapis.com/maps/api/geocode/json?latlng=%d,%d&key=AIzaSyCI-HS5B4EwhmmPlZPJmBXad5uZUjGOFHA',
+  lat,
+  long
+); */
+
+app.get('/address', async function(req, res) {
+  await request(
+    util.format(
+      'https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714187,-73.961263&key=AIzaSyCI-HS5B4EwhmmPlZPJmBXad5uZUjGOFHA'
+    ),
+    async function(error, response, body) {
+      console.log('address error:', error);
+      console.log('address statusCode:', response && response.statusCode);
+      var JSONbody = JSON.parse(body);
+      result = JSONbody['results'][0];
+      addressComponents = result['address_components'];
+
+      res.json({
+        label: result['formatted_address'],
+        street_address:
+          addressComponents[0]['short_name'] + ' ' + addressComponents[1]['short_name'],
+        city: addressComponents[3]['long_name'],
+        state: addressComponents[5]['long_name'],
+        zip_code: addressComponents[7]['short_name'],
+        country: addressComponents[6]['short_name']
+      });
+    }
+  );
+});
