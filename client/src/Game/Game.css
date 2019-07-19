@@ -1,0 +1,55 @@
+
+.PropertyWrapper {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.SignAndMapImageGrid {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+}
+
+.MapAndImageGrid {
+    padding: 20px;
+    display: grid;
+    margin-top: 25px;
+    grid-gap: 5px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.Image {
+    height: 300px;
+    width: 100%;
+    background-color: #c7c7c7;
+    object-fit: cover
+}
+
+.MapContainer {
+    height: 300px;
+    width: auto;
+    background-color: #292956;
+    position: relative
+}
+
+.Address {
+    font-size: 35px;
+    font-weight: bold;
+    margin: 10px;
+    line-height: 40px;
+    text-align: center
+}
+
+.FactsAndFeaturesTitle {
+    text-align: center; 
+    font-size: 32px; 
+    font-weight: bold
+}
+
+.FactsAndFeaturesGrid {
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr)
+}
+
+.SubmitBtn:hover {
+    cursor: pointer;
+}
