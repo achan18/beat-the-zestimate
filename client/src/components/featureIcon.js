@@ -35,7 +35,7 @@ import { faBed, faToilet, faFire, faWarehouse, faBath, faSwimmer,
             color: "#D8AC39",
             icon: faLayerGroup
         },
-        numberofpools: {
+        poolcnt: {
             name: "Pools",
             color: "#168C7F",
             icon: faSwimmer
@@ -55,7 +55,7 @@ import { faBed, faToilet, faFire, faWarehouse, faBath, faSwimmer,
             color: "#e1193b",
             icon: faVectorSquare
         },
-        finishedsquareft15: {
+        finishedsquarefeet12: {
             name: "Square Ft.",
             color: "#ea4747",
             icon: faSquare

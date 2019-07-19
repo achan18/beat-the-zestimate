@@ -1,7 +1,7 @@
 const Koa = require('koa');
 const Router = require('koa-router');
 const axios = require('axios');
-const parseString = require('xml2js').parseString;
+const cors = require('koa-cors');
 const {getData, testData} = require('./parser/parser');
 
 const {startDatabase} = require('./database/mongo');
@@ -13,31 +13,31 @@ const app = new Koa();
 const portNumber = 8080;
 
 const targetFeatures = [
-    'bathroomcnt', 'bedroomcnt', 'finishedsquarefeet15', 'fireplacecnt', 'garagecarcnt', 'hashottuborspa',
-    'latitude', 'longitude', 'lotsizesquarefeet', 'numberofstories', 'parcelid', 'poolcnt',
+    'bathroomcnt', 'bedroomcnt', 'finishedsquarefeet12', 'fireplacecnt', 'garagecarcnt', 'hashottuborspa',
+    /*'latitude', 'longitude',*/ 'lotsizesquarefeet', 'numberofstories', /*'parcelid',*/ 'poolcnt',
     'roomcnt', 'yearbuilt'
 ]
 
-router.get('/working', async (ctx) => {
-    const data = await getData();
-    const oneProperty = data[Math.floor(Math.random() * data.length)]
-    let results = {};
+// router.get('/working', async (ctx) => {
+//     const data = await getData();
+//     const oneProperty = data[Math.floor(Math.random() * data.length)]
+//     let results = {};
 
-    let property_data = {}
-    for (key in oneProperty) {
-        if (targetFeatures.includes(key)) {
-            property_data[key] = oneProperty[key];
-        }
-    }
-    results['property_data'] = property_data;
-    ctx.body = results;
-});
+//     let property_data = {}
+//     for (key in oneProperty) {
+//         if (targetFeatures.includes(key)) {
+//             property_data[key] = oneProperty[key];
+//         }
+//     }
+//     results['property_data'] = property_data;
+//     ctx.body = results;
+// });
 
-router.get("/test", ctx => {
-    const rs = testData();
-    ctx.response.set("content-type", "application/json")
-    ctx.body = rs;
-})
+// router.get("/test", ctx => {
+//     const rs = testData();
+//     ctx.response.set("content-type", "application/json")
+//     ctx.body = rs;
+// })
 
 router.get("/property", async ctx => {
 
@@ -53,8 +53,8 @@ router.get("/property", async ctx => {
     }
 
     // address for this property
-    const lat = property_data['latitude'] / 1000000.0;
-    const lon = property_data['longitude'] / 1000000.0;
+    const lat = oneProperty['latitude'] / 1000000.0;
+    const lon = oneProperty['longitude'] / 1000000.0;
     const address = await getAddress(lat, lon);
     // const address = {};
 
@@ -66,14 +66,21 @@ router.get("/property", async ctx => {
 
     // populate the response
     var body = {};
-    body['property_data'] = property_data;
+    body['features'] = property_data;
+    body['latitude'] = lat;
+    body['longitude'] = lon;
+    body['parcelid'] = oneProperty['parcelid'];
     body['address'] = address;
     body['zpid'] = zpid;
-    body['image_url'] = imageURL;
+    body['images'] = imageURL;
     ctx.body = body;
 });
 
-app.use(router.routes())
+app.use(cors({
+    origin: true,
+    methods: ['GET', 'PUT', 'POST'],
+}));
+app.use(router.routes());
 
 startDatabase().then(async () => {
     await populateDatabase();
@@ -169,7 +176,7 @@ async function getImages(zpid) {
         });
     } catch(e) {
         console.log('error in getImages(): ', e);
-        return null;
+        return [];
     }
     return results;
 }

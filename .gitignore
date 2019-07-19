@@ -24,3 +24,5 @@ yarn-error.log*
 
 client/build/*
 server/property-service/node_modules/*
+server/property-service/data/*
+server/score-service/node_modules/*

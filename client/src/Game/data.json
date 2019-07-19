@@ -1,6 +1,7 @@
 {
     "latitude": "34.144442",
     "longitude": "-118.654084",
+    "parcelid": 1234,
     "features": {
         "bedroomcnt": 4,
         "bathroomcnt": 3.5,
