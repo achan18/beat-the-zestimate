@@ -5,7 +5,7 @@ function getScore(zestimate, userZestimate, salePrice) {
         score = 100000000;
     }
     else {
-        score = coeff / Math.abs(salePrice - userZestimate);
+        score = (coeff / Math.abs(salePrice - userZestimate)).toFixed(2);
         if (Math.abs(zestimate - salePrice) > Math.abs(userZestimate - salePrice)) {
             beatZestimate = true;
             score *= 2;
