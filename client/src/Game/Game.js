@@ -14,7 +14,7 @@ export default class Home extends React.Component {
     constructor(props) {
         super(props);
 
-        const URL =  `localhost:8080/property`;
+        const URL =  `http://localhost:8080/property`;
 
         this.state = {
           latLong: {
@@ -25,24 +25,24 @@ export default class Home extends React.Component {
           image_url: null
         }
 
-        axios.get(URL).then(function (res) {
+        axios.get(URL).then((res) => {
+          res = res.data
           console.log(res)
 
-          this.state = {
+          this.setState(() => ({
             latLong: {
               lat: res.latitude,
               lng: res.longitude,
             },
             features: res.features,
-            image_url: res.image_url ? res.image_url : `https://maps.googleapis.com/maps/api/streetview?size=400x400&location=${res.address.label}&key=${google_api_key}`
-          }
+            image_url: res.images.length > 0 ? res.images[0] : `https://maps.googleapis.com/maps/api/streetview?size=400x400&location=${res.address.label}&key=${google_api_key}`,
+            formatted_address: res.address.label
+          }))
         })
         .catch(function (error) {
           // handle error
           console.log(error)
         })
-
-        // this.getImageURL(25252674)
     }
 
     getImageURL = (zpid) => {
@@ -81,12 +81,12 @@ export default class Home extends React.Component {
       
                   {/* MAP */}
                   <div className="MapContainer">
-                    {/* <MyMap latLong={this.state.latLong} /> */}
+                    <MyMap latLong={this.state.latLong} />
                   </div>
                 </div>
                 
                 <p className="Address">
-                  San Jose, CA 95129
+                  {this.state.formatted_address}
                 </p>
               </div>
       
