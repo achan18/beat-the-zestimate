@@ -13,10 +13,11 @@ const getLeaderBoard = require('./mongo').getLeaderBoard;
 const insertScore = require('./mongo').insertScore;
 
 app.get('/results', async function (req, res) {
+  console.log('req: ', req)
 
   // getting zestimate from zpid
-  var zestimateBody = await getZestimate(req.body.zpid);
-  var logError = await getLogError(req.body.parcelid);
+  var zestimateBody = await getZestimate(req.query.zpid);
+  var logError = await getLogError(req.query.parcelid);
 
   parser(zestimateBody, async function (error, result) {
     var zestimateJSON = JSON.parse(JSON.stringify(result));
@@ -24,13 +25,13 @@ app.get('/results', async function (req, res) {
     const salePrice = (10 ** (Math.log10(zestimate) - logError)).toFixed(2);
 
     // compare the zestimate to the user's Zestimate
-    var userZestimate = req.body.userZestimate;
+    var userZestimate = req.query.userZestimate;
 
     var scoreObj = getScore(zestimate, userZestimate, salePrice);
     var score = scoreObj.score, beatZestimate = scoreObj.beatZestimate;
 
-    await insertScore(req.body.userName, userZestimate, req.body.parcelid, score);
-    var leaderBoard = await getLeaderBoard(req.body.parcelid);
+    await insertScore(req.query.userName, userZestimate, req.query.parcelid, score);
+    var leaderBoard = await getLeaderBoard(req.query.parcelid);
 
     res.json({
       zestimate: zestimate,

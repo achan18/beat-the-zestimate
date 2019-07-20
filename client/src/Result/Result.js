@@ -1,11 +1,47 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SignScore from '../components/signScore'
 import './Result.css'
+const axios = require('axios');
 
 export default class Result extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            score: null,
+            zestimate: null,
+            salesPrice: null,
+        }
+
+        let parcelid = this.props.location.state.parcelid
+        let zpid = this.props.location.state.zpid
+        let username = this.props.location.state.username
+        let guess = this.props.location.state.guess
+
+        let params = {
+            userZestimate: guess,
+            parcelid: parcelid,
+            zpid: zpid,
+            userName: username
+        }
+
+        const URL =  `http://localhost:8080/results`;
+
+        axios.get(URL, {params: params}).then((res) => {
+            res = res.data
+            console.log(res)
+  
+            this.setState(() => ({
+              score: res.score,
+              zestimate: res.zestimate,
+              salesPrice: res.salesPrice,
+            }))
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error)
+          })
 
         console.log(this.props.location)
     }
@@ -15,7 +51,7 @@ export default class Result extends React.Component {
             <div>
                 <div className="ScoreGrid">
                     {/* <p>Result Page</p> */}
-                    <SignScore />
+                    <SignScore score={this.state.score}/>
 
                     {/* YOUR GUESS, ZESTIMATE, ACTUAL PRICE */}
                     <div>
@@ -23,9 +59,9 @@ export default class Result extends React.Component {
                             <p className="PriceLabel">Your Guess: </p>
                             <p className="PriceValue">{this.props.location.state.guess}</p>
                             <p className="PriceLabel">Zestimate: </p>
-                            <p className="PriceValue">$405,9000</p>
+                            <p className="PriceValue">{this.state.zestimate}</p>
                             <p className="PriceLabel">Actual Price: </p>
-                            <p className="PriceValue">$405,9000</p>
+                            <p className="PriceValue">{this.state.salesPrice}</p>
                         </div>
                         <Link to="/">
                             <button className="PlayAgainBtn">

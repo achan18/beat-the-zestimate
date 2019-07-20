@@ -9,7 +9,7 @@ class MyMap extends React.Component {
                 google={this.props.google}
                 zoom={11}
                 style={mapStyles}
-                initialCenter={this.props.latLong}
+                center={this.props.latLong}
                 streetViewControl={false}
                 mapTypeControl={false}
                 fullscreenControl={false}

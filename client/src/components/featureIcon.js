@@ -98,15 +98,10 @@ export default class FeatureIcon extends React.Component {
                     />
                     <div style={{gridColumn: '2/3', color: 'white', fontSize: '20px', marginLeft: '10px'}}>
                         <p style={{gridColumn: '2/3', color: 'white', fontWeight: '600', marginBottom: '5px'}}>{this.state.name}</p>
-                        <p style={{gridColumn: '2/3', marginTop: '5px'}}>{this.state.value}</p>
+                        <p style={{gridColumn: '2/3', marginTop: '5px'}}>{this.state.value ? this.state.value : 0}</p>
                     </div>
                 </div>
             </div>
         );
       }
 }
-
-const styles = {
-    width: 'auto',
-    height: '300px',
-};

@@ -2,19 +2,17 @@ import React from 'react';
 import SignSubmit from '../components/signSubmit'
 import FeatureIcon from '../components/featureIcon'
 import MyMap from '../components/map'
-import Data from './data.json'
 import './Game.css'
 const axios = require('axios');
 
 var google_api_key = 'AIzaSyCI-HS5B4EwhmmPlZPJmBXad5uZUjGOFHA'
-var image_url = 'https://maps.googleapis.com/maps/api/streetview?size=400x400&location=[ADDRESS]&key=AIzaSyCI-HS5B4EwhmmPlZPJmBXad5uZUjGOFHA'
 
 export default class Home extends React.Component {
 
     constructor(props) {
         super(props);
 
-        const URL =  `http://localhost:8080/property`;
+        const URL =  `http://localhost:8081/property`;
 
         this.state = {
           latLong: {
@@ -35,8 +33,12 @@ export default class Home extends React.Component {
               lng: res.longitude,
             },
             features: res.features,
-            image_url: res.images.length > 0 ? res.images[0] : `https://maps.googleapis.com/maps/api/streetview?size=400x400&location=${res.address.label}&key=${google_api_key}`,
-            formatted_address: res.address.label
+            image_url: res.images.length > 0 ? res.images[0] : 
+              `https://maps.googleapis.com/maps/api/streetview?size=400x400&location=${res.address.label}&key=${google_api_key}`,
+            formatted_address: res.address.label,
+            zpid: res.zpid,
+            parcelid: res.parcelid,
+            username: this.props.location.state.username
           }))
         })
         .catch(function (error) {
@@ -66,7 +68,11 @@ export default class Home extends React.Component {
             <div className="SignAndMapImageGrid">
       
               {/* SIGN / INPUT BOX */}
-              <SignSubmit />
+              <SignSubmit 
+                username={this.state.username}
+                parcelid={this.state.parcelid}
+                zpid={this.state.zpid}
+              />
       
               {/* PROPERTY INFO */}
               <div>
@@ -75,6 +81,7 @@ export default class Home extends React.Component {
 
                   {/* IMAGE OF HOUSE */}
                   <img src={this.state.image_url}
+                    alt="Property"
                     className="Image" 
                   />
 

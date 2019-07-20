@@ -10,7 +10,7 @@ const {insertProperty, getAllProperties, deleteAllProperties, findProperty, coun
 const router = new Router();
 const app = new Koa();
 
-const portNumber = 8080;
+const portNumber = 8081;
 
 const targetFeatures = [
     'bathroomcnt', 'bedroomcnt', 'finishedsquarefeet12', 'fireplacecnt', 'garagecarcnt', 'hashottuborspa',

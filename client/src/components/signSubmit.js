@@ -1,6 +1,6 @@
 import React from 'react';
 import NumberFormat from 'react-number-format';
-import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import './sign.css'
 
 export default class SignSubmit extends React.Component {
@@ -28,7 +28,12 @@ export default class SignSubmit extends React.Component {
         if (this.state.toResultPage) {
             return <Redirect to={{
                 pathname: '/result',
-                state: { guess: this.state.guess }
+                state: { 
+                    guess: this.state.guess,
+                    parcelid: this.props.parcelid,
+                    username: this.props.username,
+                    zpid: this.props.zpid,
+                }
             }} />
         }
 
@@ -160,7 +165,7 @@ const styles = {
         gridColumn: '2/3',
         gridRow: '4/5',
         backgroundColor: 'rgb(228, 228, 228)',
-        height: 'auto',
+        height: '200px',
         boxShadow: '-5px 6px 4px #00000012'
     },
 

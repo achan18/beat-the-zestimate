@@ -24,6 +24,7 @@ function getLogError(parcelid) {
       let query = { "parcelid": parcelid };
 
       collection.find(query).toArray(function (err, docs) {
+        console.log('asdf documents', docs)
         assert.equal(err, null);
         logerror = docs[0]['logerror'];
         resolve(logerror);
