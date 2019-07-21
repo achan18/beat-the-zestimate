@@ -2,8 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBed, faToilet, faFire, faWarehouse, faBath, faSwimmer, 
     faDoorOpen, faHome, faLayerGroup, faVectorSquare, faSquare } from '@fortawesome/free-solid-svg-icons'
-
-
+import './featureIcon.css'
     var data = {
         bathroomcnt: {
             name: "Bathrooms",
@@ -78,27 +77,23 @@ export default class FeatureIcon extends React.Component {
 
     render() {
         return (
-            <div style={{
-                backgroundColor: this.state.color, 
-                margin: '20px', 
-                height: '100px',
-                borderRadius: '8px',
-                maxWidth: '260px'
+            <div className="feature-icon-wrapper" 
+            style={{
+                backgroundColor: this.state.color
             }}>
-                <div style={{
-                    margin: 'auto', 
-                    display: 'grid',
-                    gridTemplateColumns: '2fr 3fr'
-                }}>
+                <div className="feature-icon-grid">
                     <FontAwesomeIcon 
                         color="white" 
                         icon={this.state.icon} 
-                        size="3x"
-                        style={{gridColumn: '1/2', margin: 'auto'}}
+                        className="feature-icon"
                     />
-                    <div style={{gridColumn: '2/3', color: 'white', fontSize: '20px', marginLeft: '10px'}}>
-                        <p style={{gridColumn: '2/3', color: 'white', fontWeight: '600', marginBottom: '5px'}}>{this.state.name}</p>
-                        <p style={{gridColumn: '2/3', marginTop: '5px'}}>{this.state.value ? this.state.value : 0}</p>
+                    <div className="feature-icon-descr-wrapper">
+                        <p className="feature-icon-label">
+                            {this.state.name}
+                        </p>
+                        <p className="feature-icon-value">
+                            {this.state.value ? this.state.value : 0}
+                        </p>
                     </div>
                 </div>
             </div>

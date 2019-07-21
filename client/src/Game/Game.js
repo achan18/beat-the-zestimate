@@ -20,7 +20,8 @@ export default class Home extends React.Component {
             lng: null,
           },
           features: {},
-          image_url: null
+          image_url: null,
+          isLoaded: false
         }
 
         axios.get(URL).then((res) => {
@@ -28,6 +29,7 @@ export default class Home extends React.Component {
           console.log(res)
 
           this.setState(() => ({
+            isLoaded: true,
             latLong: {
               lat: res.latitude,
               lng: res.longitude,
@@ -36,9 +38,12 @@ export default class Home extends React.Component {
             image_url: res.images.length > 0 ? res.images[0] : 
               `https://maps.googleapis.com/maps/api/streetview?size=400x400&location=${res.address.label}&key=${google_api_key}`,
             formatted_address: res.address.label,
+            city: res.address.city,
+            state: res.address.state,
+            zip_code: res.address.zip_code,
             zpid: res.zpid,
             parcelid: res.parcelid,
-            username: this.props.location.state.username
+            username: this.props.location.state ? this.props.location.state.username : null
           }))
         })
         .catch(function (error) {
@@ -62,8 +67,12 @@ export default class Home extends React.Component {
     }
 
     render() {
+        // if (!this.state.isLoaded) {
+        //   return null
+        // }
+
         return (
-          <div className="Container">
+          <div className="GameContainer">
       
             <div className="SignAndMapImageGrid">
       
@@ -93,7 +102,7 @@ export default class Home extends React.Component {
                 </div>
                 
                 <p className="Address">
-                  {this.state.formatted_address}
+                  {this.state.city}, {this.state.state} {this.state.zip_code}
                 </p>
               </div>
       

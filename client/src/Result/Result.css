@@ -6,18 +6,18 @@
 .PricesGrid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin: 50px 50px 40px;
+    margin: 50px 0 40px;
     grid-column-gap: 20px;
 }
 
 .PriceLabel {
-    font-size: 26px;
+    font-size: 20px;
     text-align: right;
     font-weight: bold;
 }
 
 .PriceValue {
-    font-size: 26px;
+    font-size: 20px;
 }
 
 .PlayAgainBtn {
@@ -46,26 +46,61 @@ a {
 
 .LeaderboardTitle {
     text-align: center;
-    font-size: 40px;
+    font-size: 30px;
 }
 
 .LeaderboardGrid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 50%;
-    min-width: 500px;
     margin: auto;
 }
 
 .LeaderboardLabel {
-    font-size: 25px;
+    font-size: 18px;
     text-align: center;
     padding-bottom: 12px;
     border-bottom: 1px solid #444040;
 }
 
 .LeaderboardName, .LeaderboardScore {
-    font-size: 25px;
+    font-size: 18px;
     text-align: center;
     margin: 10px auto;
+}
+
+@media only screen and (min-width: 390px) {
+    .PricesGrid {
+        margin: 50px 20px 40px;
+    }
+
+    .PriceLabel, .PriceValue {
+        font-size: 24px;
+    }
+
+    .LeaderboardLabel, .LeaderboardName, .LeaderboardScore {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (min-width: 510px) {
+    .PricesGrid {
+        margin: 50px 50px 40px;
+    }
+
+    .PriceLabel, .PriceValue {
+        font-size: 26px;
+    }
+
+    .LeaderboardGrid {
+        width: 50%;
+        min-width: 500px;
+    }
+
+    .LeaderboardTitle {
+        font-size: 40px;
+    }
+
+    .LeaderboardLabel, .LeaderboardName, .LeaderboardScore {
+        font-size: 25px;
+    }
 }

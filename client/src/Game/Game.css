@@ -1,55 +1,118 @@
 
-.PropertyWrapper {
-    max-width: 1200px;
-    margin: auto;
-}
-
 .SignAndMapImageGrid {
-    display: grid;
-    grid-template-columns: 2fr 3fr;
+    display: block;
+    max-width: 570px;
+    margin: auto;
 }
 
 .MapAndImageGrid {
     padding: 20px;
-    display: grid;
-    margin-top: 25px;
-    grid-gap: 5px;
-    grid-template-columns: 1fr 1fr;
+    display: block;
+    margin: 25px auto auto;
 }
 
 .Image {
-    height: 300px;
+    height: 175px;
     width: 100%;
     background-color: #c7c7c7;
     object-fit: cover
 }
 
 .MapContainer {
-    height: 300px;
+    height: 175px;
     width: auto;
     background-color: #292956;
     position: relative
 }
 
 .Address {
-    font-size: 35px;
+    font-size: 25px;
     font-weight: bold;
+    text-align: center;
     margin: 10px;
-    line-height: 40px;
-    text-align: center
+    line-height: 20px;
 }
 
 .FactsAndFeaturesTitle {
     text-align: center; 
-    font-size: 32px; 
+    font-size: 26px; 
     font-weight: bold
 }
 
 .FactsAndFeaturesGrid {
-    display: grid; 
-    grid-template-columns: repeat(4, 1fr)
+    display: block;
+    margin: auto;
+    width: fit-content;
 }
 
-.SubmitBtn:hover {
-    cursor: pointer;
+@media only screen and (min-width: 390px) {
+    .Image, .MapContainer {
+        height: 200px;
+    }
+
+    .Address {
+        font-size: 30px;
+        line-height: 30px;
+    }
+
+    .FactsAndFeaturesTitle {
+        font-size: 32px; 
+    }
+}
+
+@media only screen and (min-width: 500px) {
+    .Image, .MapContainer {
+        height: 250px;
+    }
+
+    .Address {
+        font-size: 35px;
+        line-height: 40px;
+    }
+
+    .FactsAndFeaturesGrid {
+        display: grid; 
+        grid-template-columns: repeat(2, 1fr)
+    }
+}
+
+@media only screen and (min-width: 730px) {
+    .MapAndImageGrid {
+        padding: 20px;
+        display: grid;
+        grid-gap: 5px;
+        grid-template-columns: 1fr 1fr;
+        max-width: 900px;
+        margin: 25px auto auto;
+    }
+
+    .Image, .MapContainer {
+        height: 300px;
+    }
+
+    .SignAndMapImageGrid {
+        max-width: none;
+    }
+
+    .FactsAndFeaturesGrid {
+        display: grid; 
+        grid-template-columns: repeat(3, 1fr)
+    }
+}
+
+/* Desktop */
+@media only screen and (min-width: 1200px) {
+    .SignAndMapImageGrid {
+        display: grid;
+        grid-template-columns: 2fr 3fr;
+    }
+
+    .MapAndImageGrid {
+        max-width: none;
+    }
+
+    .FactsAndFeaturesGrid {
+        display: grid; 
+        grid-template-columns: repeat(4, 1fr)
+    }
 }

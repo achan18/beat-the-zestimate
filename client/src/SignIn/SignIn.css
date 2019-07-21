@@ -1,17 +1,12 @@
 .LoginContainer {
-    width: 40%;
-    min-width: 400px;
-    margin: 100px auto;
-}
-
-.InputBoxWrapper {
     display: grid;
-    margin: 30px;
     padding: 10px;
     background-color: rgb(228, 228, 228);
     border-radius: 5px;
     box-shadow: -5px 6px 4px #00000012;
     padding-bottom: 45px;
+    width: 90%;
+    margin: 50px auto;
   }
 
 .HouseIcon {
@@ -20,7 +15,8 @@
     border-radius: 50%;
     padding: 10px;
     background: #0c4399;
-    margin-top: 40px;
+    margin-top: 20px;
+    font-size: 40px;
 }
 
 .Title {
@@ -28,25 +24,25 @@
     text-align: center;
     font-weight: bold;
     color: #0c4499;
-    font-size: 55px;
+    font-size: 35px;
     margin: 0 auto;
     letter-spacing: 2px;
     padding: 15px;
 }
 
 .UsernameInput {
-    margin: 50px auto 10px;
+    margin: 20px auto 10px;
     border-radius: 6px;
     border: none;
     outline: none;
     padding: 15px;
-    font-size: 18px;
+    font-size: 14px;
     display: block;
     width: 225px;
 }
 
 .LoginBtn {
-    font-size: 18px;
+    font-size: 14px;
     color: white;
     border-radius: 6px;
     background-color: #f2af34;
@@ -63,4 +59,36 @@
     cursor: pointer;
     background-color: #f19c1c;
     transition: 0.3s;
+}
+
+@media only screen and (min-width: 510px) {
+    .LoginContainer {
+        display: grid;
+        padding: 10px;
+        background-color: rgb(228, 228, 228);
+        border-radius: 5px;
+        box-shadow: -5px 6px 4px #00000012;
+        padding-bottom: 45px;
+        width: 40%;
+        min-width: 400px;
+        margin: 100px auto;
+      }
+
+      .Title {
+        font-size: 55px;
+      }
+
+      .HouseIcon {
+        font-size: 50px;
+        margin-top: 40px;
+      }
+
+      .UsernameInput {
+        margin: 50px auto 10px;
+        font-size: 18px;
+    }
+
+    .LoginBtn {
+        font-size: 18px;
+    }
 }

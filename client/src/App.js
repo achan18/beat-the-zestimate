@@ -4,6 +4,7 @@ import Game from './Game/Game'
 import Result from './Result/Result'
 import SignIn from './SignIn/SignIn';
 import './App.css'
+import Leaderboard from './Leaderboard/Leaderboard';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" exact component={SignIn} />
         <Route path="/game/" exact component={Game} />
         <Route path="/result/" component={Result} />
+        <Route path="/leaderboard/" component={Leaderboard} />
     </Router>
     </div>
   );

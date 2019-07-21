@@ -32,31 +32,28 @@ export default class SignIn extends React.Component {
 
         return (
             <div className="LoginContainer">
-                <div className="InputBoxWrapper">
-                    <FontAwesomeIcon 
-                        color="white" 
-                        icon={faHome} 
-                        size="3x"
-                        className="HouseIcon"
-                    />
-                    <p className="Title">
-                        Beat the Zestimate!
-                    </p>
+                <FontAwesomeIcon 
+                    color="white" 
+                    icon={faHome} 
+                    className="HouseIcon"
+                />
+                <p className="Title">
+                    Beat the Zestimate!
+                </p>
 
-                    <input 
-                        className="UsernameInput" 
-                        placeholder="Enter your username"
-                        onChange={input => this.setState({username: input.target.value})}
-                    />
+                <input 
+                    className="UsernameInput" 
+                    placeholder="Enter your username"
+                    onChange={input => this.setState({username: input.target.value})}
+                />
 
-                    <button 
-                        disabled={!this.state.username}
-                        className="LoginBtn"
-                        onClick={this.goToGameScreen}
-                    >
-                        LOGIN
-                    </button>
-                </div>
+                <button 
+                    disabled={!this.state.username}
+                    className="LoginBtn"
+                    onClick={this.goToGameScreen}
+                >
+                    PLAY
+                </button>
             </div>
         )
     }

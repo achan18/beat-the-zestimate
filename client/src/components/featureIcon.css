@@ -1,0 +1,51 @@
+.feature-icon-wrapper {
+    margin: 20px;
+    border-radius: 8px;
+    max-width: 260px;
+}
+
+.feature-icon-grid {
+    margin: auto;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+}
+
+.feature-icon {
+    grid-column: 1/2;
+    margin: auto;
+    font-size: 35px;
+}
+
+.feature-icon-descr-wrapper {
+    grid-column: 2/3;
+    color: white;
+    font-size: 16px; 
+    margin-left: 10px;
+    padding-right: 8px;
+}
+
+.feature-icon-label {
+    grid-column: 2/3; 
+    color: white;
+    font-weight: 600; 
+    margin-bottom: 5px;
+}
+
+.feature-icon-value {
+    grid-column: 2/3; 
+    margin-top: 5px;
+}
+
+@media only screen and (min-width: 390px) {
+    .feature-icon-descr-wrapper {
+        font-size: 20px;
+    }
+
+    .feature-icon-wrapper {
+        height: 100px;
+    }
+
+    .feature-icon {
+        font-size: 40px;
+    }
+}

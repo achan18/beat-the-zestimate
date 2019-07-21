@@ -12,8 +12,10 @@ export default class Result extends React.Component {
             score: null,
             zestimate: null,
             salesPrice: null,
+            guess: this.props.location.state ? this.props.location.state.guess : null
         }
 
+        if (!this.props.location.state) return
         let parcelid = this.props.location.state.parcelid
         let zpid = this.props.location.state.zpid
         let username = this.props.location.state.username
@@ -48,31 +50,38 @@ export default class Result extends React.Component {
 
     render() {
         return (
-            <div>
-                <div className="ScoreGrid">
-                    {/* <p>Result Page</p> */}
-                    <SignScore score={this.state.score}/>
+            <div className="GameContainer">
+                
+                <div className="SignAndMapImageGrid">
 
-                    {/* YOUR GUESS, ZESTIMATE, ACTUAL PRICE */}
+                {/* SIGN / INPUT BOX */}
+                <SignScore score={this.state.score}/>
+
+                {/* PROPERTY INFO */}
+                <div>
                     <div>
                         <div className="PricesGrid">
                             <p className="PriceLabel">Your Guess: </p>
-                            <p className="PriceValue">{this.props.location.state.guess}</p>
+                            <p className="PriceValue">{this.state.guess}</p>
                             <p className="PriceLabel">Zestimate: </p>
                             <p className="PriceValue">{this.state.zestimate}</p>
                             <p className="PriceLabel">Actual Price: </p>
                             <p className="PriceValue">{this.state.salesPrice}</p>
                         </div>
-                        <Link to="/">
+                        <Link to="/leaderboard">
                             <button className="PlayAgainBtn">
-                                PLAY AGAIN
+                                See Leaderboard
                             </button>
                         </Link>
                     </div>
                 </div>
-                <hr style={{margin: '50px'}}/>
-                <h1 className="LeaderboardTitle">
-                    Leaderboard
+
+                </div>
+
+                <hr style={{margin: '45px'}} />
+
+                {/* <h1 className="LeaderboardTitle">
+                        Leaderboard
                 </h1>
                 <div className="LeaderboardGrid">
                     <i className="LeaderboardLabel">Name</i>
@@ -84,7 +93,7 @@ export default class Result extends React.Component {
                     <p className="LeaderboardScore">17,500</p>
                     <p className="LeaderboardName">Amelie</p>
                     <p className="LeaderboardScore">12,500</p>
-                </div>
+                </div> */}
 
             </div>
         )
