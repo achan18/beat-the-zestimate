@@ -1,0 +1,28 @@
+{
+    "address": {
+        "city": "Norwalk",
+        "country": "USA",
+        "label": "14411 Pontlavoy Ave, Norwalk, CA 90650, USA",
+        "state": "CA",
+        "street_name": "14411 Pontlavoy Ave",
+        "zip_code": "90650"
+    },
+    "features": {
+        "bathroomcnt": 1,
+        "bedroomcnt": 3,
+        "finishedsquarefeet12": 980,
+        "fireplacecnt": "",
+        "garagecarcnt": "",
+        "hashottuborspa": "",
+        "lotsizesquarefeet": 6001,
+        "numberofstories": "",
+        "poolcnt": "",
+        "roomcnt": 0,
+        "yearbuilt": 1954
+    },
+    "images": [],
+    "latitude": 33.900165,
+    "longitude": -118.049413,
+    "parcelid": 12753517,
+    "zpid": 21400917
+}
