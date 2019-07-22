@@ -8,7 +8,6 @@ class MyMap extends React.Component {
             <Map
                 google={this.props.google}
                 zoom={11}
-                style={mapStyles}
                 center={this.props.latLong}
                 streetViewControl={false}
                 mapTypeControl={false}
@@ -20,10 +19,5 @@ class MyMap extends React.Component {
         );
       }
 }
-
-const mapStyles = {
-    width: 'auto',
-    height: '300px',
-};
 
 export default GoogleApiWrapper({apiKey: 'AIzaSyCI-HS5B4EwhmmPlZPJmBXad5uZUjGOFHA'})(MyMap);

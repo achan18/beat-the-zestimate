@@ -12,6 +12,7 @@ export default class Result extends React.Component {
             score: null,
             zestimate: null,
             salePrice: null,
+            beatZestimate: false,
             guess: this.props.location.state ? this.props.location.state.guess : null
         }
 
@@ -38,6 +39,7 @@ export default class Result extends React.Component {
               score: Math.floor(res.score),
               zestimate: this.formatToCurrency(res.zestimate),
               salePrice: this.formatToCurrency(res.salePrice),
+              beatZestimate: res.beatZestimate
             }))
           })
           .catch(function (error) {
@@ -58,6 +60,13 @@ export default class Result extends React.Component {
             <div className="GameContainer">
                 
                 <div className="SignAndMapImageGrid">
+                
+                {
+                    this.state.beatZestimate && 
+                    <h1 className="BeatZestimateMsg">
+                        You beat the Zestimate!
+                    </h1>
+                }
 
                 {/* SIGN / INPUT BOX */}
                 <SignScore score={this.state.score}/>
@@ -89,21 +98,6 @@ export default class Result extends React.Component {
                 </div>
 
                 <hr style={{margin: '45px'}} />
-
-                {/* <h1 className="LeaderboardTitle">
-                        Leaderboard
-                </h1>
-                <div className="LeaderboardGrid">
-                    <i className="LeaderboardLabel">Name</i>
-                    <i className="LeaderboardLabel">Score</i>
-
-                    <p className="LeaderboardName">Kevin</p>
-                    <p className="LeaderboardScore">20,000</p>
-                    <p className="LeaderboardName">Susan</p>
-                    <p className="LeaderboardScore">17,500</p>
-                    <p className="LeaderboardName">Amelie</p>
-                    <p className="LeaderboardScore">12,500</p>
-                </div> */}
 
             </div>
         )
