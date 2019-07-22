@@ -21,26 +21,31 @@ app.get('/results', async function (req, res) {
   var logError = await getLogError(req.query.parcelid);
 
   parser(zestimateBody, async function (error, result) {
-    var zestimateJSON = JSON.parse(JSON.stringify(result));
-    var zestimate = zestimateJSON['Zestimate:zestimate']['response'][0]['zestimate'][0]['amount'][0]['_'];
-    const salePrice = (10 ** (Math.log10(zestimate) - logError)).toFixed(2);
+    try {
+      var zestimateJSON = JSON.parse(JSON.stringify(result));
+      var zestimate = zestimateJSON['Zestimate:zestimate']['response'][0]['zestimate'][0]['amount'][0]['_'];
+      const salePrice = (10 ** (Math.log10(zestimate) - logError)).toFixed(2);
 
-    // compare the zestimate to the user's Zestimate
-    var userZestimate = req.query.userZestimate;
+      // compare the zestimate to the user's Zestimate
+      var userZestimate = req.query.userZestimate;
 
-    var scoreObj = getScore(zestimate, userZestimate, salePrice);
-    var score = scoreObj.score, beatZestimate = scoreObj.beatZestimate;
+      var scoreObj = getScore(zestimate, userZestimate, salePrice);
+      var score = scoreObj.score, beatZestimate = scoreObj.beatZestimate;
 
-    await insertScore(req.query.userName, userZestimate, req.query.parcelid, score);
-    var leaderBoard = await getLeaderBoard(req.query.parcelid);
+      await insertScore(req.query.userName, userZestimate, req.query.parcelid, score);
+      var leaderBoard = await getLeaderBoard(req.query.parcelid);
 
-    res.json({
-      zestimate: zestimate,
-      userZestimate: userZestimate,
-      salePrice: salePrice,
-      score: score,
-      beatZestimate: beatZestimate
-    });
+      res.json({
+        zestimate: zestimate,
+        userZestimate: userZestimate,
+        salePrice: salePrice,
+        score: score,
+        beatZestimate: beatZestimate
+      });
+    } catch (e) {
+      console.log(e);
+      console.log(zestimateJSON);
+    }
 
   });
 });

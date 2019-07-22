@@ -7,6 +7,8 @@ const {getData, testData} = require('./parser/parser');
 const {startDatabase} = require('./database/mongo');
 const {insertProperty, getAllProperties, deleteAllProperties, findProperty, count, getRandomProperty} = require('./database/properties');
 
+const goodProperty = require('../data/goodproperty.json');
+
 const router = new Router();
 const app = new Koa();
 
@@ -19,7 +21,7 @@ const targetFeatures = [
 ]
 
 const superSecretPw = 'internsrock'
-let currentProperty;
+let currentProperty = goodProperty;
 
 router.get("/dev", async ctx => {
     ctx.response.set("content-type", "application/json");
@@ -86,7 +88,7 @@ app.use(router.routes());
 
 startDatabase().then(async () => {
     // await populateDatabase();
-    updateCurrentProperty();
+    // updateCurrentProperty();
 
     app.listen(portNumber, () => {
         console.log(`listening on port ${portNumber}`);

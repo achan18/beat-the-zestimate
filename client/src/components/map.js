@@ -4,6 +4,7 @@ import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 class MyMap extends React.Component {
 
     render() {
+        console.log(this.props.latLong);
         return (
             <Map
                 google={this.props.google}
