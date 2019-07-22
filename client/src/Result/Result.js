@@ -11,7 +11,7 @@ export default class Result extends React.Component {
         this.state = {
             score: null,
             zestimate: null,
-            salesPrice: null,
+            salePrice: null,
             guess: this.props.location.state ? this.props.location.state.guess : null
         }
 
@@ -35,17 +35,22 @@ export default class Result extends React.Component {
             console.log(res)
   
             this.setState(() => ({
-              score: res.score,
-              zestimate: res.zestimate,
-              salesPrice: res.salesPrice,
+              score: Math.floor(res.score),
+              zestimate: this.formatToCurrency(res.zestimate),
+              salePrice: this.formatToCurrency(res.salePrice),
             }))
           })
           .catch(function (error) {
-            // handle error
             console.log(error)
           })
+    }
 
-        console.log(this.props.location)
+    formatToCurrency = (value) => {
+        if (typeof value == 'string') {
+            value = parseInt(value, 10)
+        }
+        var num = '$' + value.toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+        return num
     }
 
     render() {
@@ -66,7 +71,7 @@ export default class Result extends React.Component {
                             <p className="PriceLabel">Zestimate: </p>
                             <p className="PriceValue">{this.state.zestimate}</p>
                             <p className="PriceLabel">Actual Price: </p>
-                            <p className="PriceValue">{this.state.salesPrice}</p>
+                            <p className="PriceValue">{this.state.salePrice}</p>
                         </div>
                         <Link to="/leaderboard">
                             <button className="PlayAgainBtn">
