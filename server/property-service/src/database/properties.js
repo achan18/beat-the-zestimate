@@ -1,6 +1,6 @@
 const {getDatabase} = require('./mongo');
 
-const collectionName = 'smallProperties';
+const collectionName = 'property';
 
 // Inserts all of the properties into the db
 async function insertProperty(property) {
@@ -33,17 +33,35 @@ async function count(database) {
     return database.collection(collectionName).countDocuments();
 }
 
+// async function getRandomProperty() {
+//     const database = await getDatabase();
+//     const totalEntries = await count(database);
+//     const randNum = Math.floor(Math.random() * totalEntries);
+//     return database
+//         .collection(collectionName)
+//         .find({})
+//         .limit(1)
+//         .skip(randNum)
+//         .toArray()
+//         .then(resp => resp.length ? resp[0] : {});
+// }
+
 async function getRandomProperty() {
-    const database = await getDatabase();
-    const totalEntries = await count(database);
-    const randNum = Math.floor(Math.random() * totalEntries);
-    return database
-        .collection(collectionName)
-        .find({})
-        .limit(1)
-        .skip(randNum)
-        .toArray()
-        .then(resp => resp.length ? resp[0] : {});
+    const db = await getDatabase();
+    const totalSaleEntries = await db.collection('sales').countDocuments();
+    const randNum = Math.floor(Math.random() * totalSaleEntries);
+    const randomProperty = await db
+                            .collection('sales')
+                            .find({})
+                            .limit(1)
+                            .skip(randNum)
+                            .toArray()
+                            .then(resp => resp.length ? resp[0] : {});
+    return db
+            .collection(collectionName)
+            .find({'parcelid':randomProperty.parcelid})
+            .toArray()
+            .then((resp) => resp.length ? resp[0] : {});
 }
 
 module.exports = {

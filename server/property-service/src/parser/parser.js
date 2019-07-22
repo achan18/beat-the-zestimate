@@ -2,7 +2,7 @@ const csv = require('csv-parser')
 const fs = require('fs')
 const JSONStream = require('JSONStream');
 
-const csvFileName = 'sample.csv';
+const csvFileName = 'test_properties.csv';
 const dataFilePath = `./data/${csvFileName}`;
 
 // Returns an object

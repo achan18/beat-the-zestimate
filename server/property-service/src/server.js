@@ -39,6 +39,12 @@ const targetFeatures = [
 //     ctx.body = rs;
 // })
 
+router.get("/dev", async ctx => {
+    const oneProperty = await getRandomProperty();
+    ctx.response.set("content-type", "application/json");
+    ctx.body = oneProperty;
+});
+
 router.get("/property", async ctx => {
 
     // random property features
@@ -83,7 +89,7 @@ app.use(cors({
 app.use(router.routes());
 
 startDatabase().then(async () => {
-    await populateDatabase();
+    // await populateDatabase();
 
     app.listen(portNumber, () => {
         console.log(`listening on port ${portNumber}`);

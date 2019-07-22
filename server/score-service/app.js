@@ -1,9 +1,8 @@
 // Lib
 const express = require('express');
 const app = express();
-const request = require('request');
 const parser = require('xml2js').parseString;
-const util = require('util');
+const cors = require('cors');
 
 // User-defined Functions
 const getLogError = require('./mongo').getLogError;
@@ -12,8 +11,10 @@ const getScore = require('./score').getScore;
 const getLeaderBoard = require('./mongo').getLeaderBoard;
 const insertScore = require('./mongo').insertScore;
 
+app.use(cors());
+
 app.get('/results', async function (req, res) {
-  console.log('req: ', req)
+  // console.log('req: ', req)
 
   // getting zestimate from zpid
   var zestimateBody = await getZestimate(req.query.zpid);

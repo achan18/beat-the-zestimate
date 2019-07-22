@@ -3,32 +3,29 @@ const assert = require('assert');
 
 
 // Connection URL
-const url = 'mongodb://localhost:27017';
+const url = 'mongodb://localhost:27017/hackweek';
 
 // Database Name
-const dbName = 'zillowdb';
+const dbName = 'hackweek';
 
 // Create a new MongoClient
-const client = new MongoClient(url);
+const client = new MongoClient(url, { useNewUrlParser: true });
 
 // Use connect method to connect to the Server
 function getLogError(parcelid) {
   var p = new Promise((resolve, reject) => {
     var logerror;
-    client.connect(function (err) {
+    client.connect(async function (err) {
       assert.equal(null, err);
       console.log('Connected successfully to server');
 
-      const db = client.db(dbName);
-      const collection = db.collection('sales');
-      let query = { "parcelid": parcelid };
-
-      collection.find(query).toArray(function (err, docs) {
-        console.log('asdf documents', docs)
-        assert.equal(err, null);
-        logerror = docs[0]['logerror'];
-        resolve(logerror);
-      });
+      const db = client.db();
+      // const db = await client.db(dbName);
+      // const collection = await db.collection('sales');
+      const query = { "parcelid": parseInt(parcelid) };
+      const resp = await db.collection('sales').find(query).toArray();
+      logerror = resp[0]['logerror'];
+      resolve(logerror);
     });
   });
 

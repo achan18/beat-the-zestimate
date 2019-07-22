@@ -1,4 +1,5 @@
 function getScore(zestimate, userZestimate, salePrice) {
+    userZestimate = userZestimate.replace(/[$,]/g, '');
     var beatZestimate = false, coeff = 100000000, score;
     if (salePrice == userZestimate) {
         beatZestimate = true;
