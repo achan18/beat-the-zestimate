@@ -8,6 +8,7 @@ export default class Leaderboard extends React.Component {
         let parcelid = this.props.location.state ? this.props.location.state.parcelid : null
 
         const URL =  `http://localhost:8080/leaderboard?parcelid=${parcelid}`;
+        // const URL =  `http://172.30.100.143:8080/leaderboard?parcelid=${parcelid}`;
 
         this.state = {
             scores: []

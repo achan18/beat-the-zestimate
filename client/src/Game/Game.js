@@ -13,6 +13,7 @@ export default class Home extends React.Component {
         super(props);
 
         const URL =  `http://localhost:8081/property`;
+        // const URL = `http://172.30.100.143:8081/property`;
 
         this.state = {
           latLong: {
@@ -102,7 +103,8 @@ export default class Home extends React.Component {
                 </div>
                 
                 <p className="Address">
-                  {this.state.city}, {this.state.state} {this.state.zip_code}
+                  {/* {this.state.city}, {this.state.state} {this.state.zip_code} */}
+                  {this.state.formatted_address}
                 </p>
               </div>
       

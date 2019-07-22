@@ -30,6 +30,7 @@ export default class Result extends React.Component {
         }
 
         const URL =  `http://localhost:8080/results`;
+        // const URL = `http://172.30.100.143:8080/results`;
 
         axios.get(URL, {params: params}).then((res) => {
             res = res.data
