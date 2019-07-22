@@ -58,13 +58,16 @@ async function insertScore(name, userZestimate, parcelid, score) {
   const db = connection.db(dbName);
   const collection = db.collection('scores');
 
-  await collection.insertOne({
-    name: name,
-    userZestimate: userZestimate,
-    parcelid: parcelid,
-    score: score,
-    createDate: Date.now()
-  });
+  const found = (await db.collection('scores').find({'name': name}).toArray().length) != 0;
+  if (!found) {
+    await collection.insertOne({
+      name: name,
+      userZestimate: userZestimate,
+      parcelid: parcelid,
+      score: score,
+      createDate: Date.now()
+    });
+  }
 }
 
 module.exports.getLogError = getLogError;

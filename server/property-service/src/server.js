@@ -111,8 +111,6 @@ async function populateDatabase() {
         try {
             insertCond = parseInt(property.bathroomcnt, 10) > 0
             && parseInt(property.bedroomcnt, 10) > 0;
-
-
         } catch (e) {
             // in case field dne
         }

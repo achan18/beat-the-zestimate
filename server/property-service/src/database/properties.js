@@ -33,19 +33,6 @@ async function count(database) {
     return database.collection(collectionName).countDocuments();
 }
 
-// async function getRandomProperty() {
-//     const database = await getDatabase();
-//     const totalEntries = await count(database);
-//     const randNum = Math.floor(Math.random() * totalEntries);
-//     return database
-//         .collection(collectionName)
-//         .find({})
-//         .limit(1)
-//         .skip(randNum)
-//         .toArray()
-//         .then(resp => resp.length ? resp[0] : {});
-// }
-
 async function getRandomProperty() {
     const db = await getDatabase();
     const totalSaleEntries = await db.collection('sales').countDocuments();

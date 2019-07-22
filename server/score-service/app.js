@@ -39,8 +39,7 @@ app.get('/results', async function (req, res) {
       userZestimate: userZestimate,
       salePrice: salePrice,
       score: score,
-      beatZestimate: beatZestimate,
-      // leaderBoard: leaderBoard
+      beatZestimate: beatZestimate
     });
 
   });
