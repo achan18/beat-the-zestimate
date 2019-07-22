@@ -64,7 +64,7 @@ export default class Result extends React.Component {
                 {
                     this.state.beatZestimate && 
                     <h1 className="BeatZestimateMsg">
-                        You beat the Zestimate!
+                        You beat the Zestimate! (score x2)
                     </h1>
                 }
 
