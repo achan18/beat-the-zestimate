@@ -73,7 +73,12 @@ export default class Result extends React.Component {
                             <p className="PriceLabel">Actual Price: </p>
                             <p className="PriceValue">{this.state.salePrice}</p>
                         </div>
-                        <Link to="/leaderboard">
+                        <Link to={{
+                            pathname: '/leaderboard',
+                            state: {
+                                parcelid: this.props.location.state.parcelid
+                            }}}
+                        >
                             <button className="PlayAgainBtn">
                                 See Leaderboard
                             </button>
