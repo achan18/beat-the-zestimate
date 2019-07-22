@@ -40,9 +40,16 @@ app.get('/results', async function (req, res) {
       salePrice: salePrice,
       score: score,
       beatZestimate: beatZestimate,
-      leaderBoard: leaderBoard
+      // leaderBoard: leaderBoard
     });
 
+  });
+});
+
+app.get('/leaderboard', async function (req, res) {
+  const leaderBoard = await getLeaderBoard(req.query.parcelid);
+  res.json({
+    scores: leaderBoard
   });
 });
 

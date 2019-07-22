@@ -40,7 +40,7 @@ function getLeaderBoard(parcelid) {
       let mySort = { score: -1 };
       let query = { "parcelid": parcelid };
       collection.find(query).sort(mySort).toArray(function (error, result) {
-        console.log(result);
+        // console.log(result);
         resolve(result);
       });
     });
