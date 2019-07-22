@@ -18,69 +18,65 @@ const targetFeatures = [
     'roomcnt', 'yearbuilt'
 ]
 
-// router.get('/working', async (ctx) => {
-//     const data = await getData();
-//     const oneProperty = data[Math.floor(Math.random() * data.length)]
-//     let results = {};
+const superSecretPw = 'internsrock'
+let currentProperty;
 
-//     let property_data = {}
+router.get("/dev", async ctx => {
+    ctx.response.set("content-type", "application/json");
+    console.log(ctx.request.query);
+    ctx.body = targetFeatures;
+});
+
+router.get('/property', async ctx => {
+    const adminFlag = ctx.request.query['admin'] ||  false;
+    const key = ctx.request.query['key'] || null;
+
+    if (adminFlag && key === superSecretPw) {
+        await updateCurrentProperty();
+        ctx.response.set("content-type", "application/json");
+        ctx.body = currentProperty;
+    } else {
+        ctx.response.set("content-type", "application/json");
+        ctx.body = currentProperty;
+    }
+})
+
+// router.get("/property", async ctx => {
+
+//     // random property features
+//     const oneProperty = await getRandomProperty();
+//     ctx.response.set("content-type", "application/json");
+
+//     var property_data = {};
 //     for (key in oneProperty) {
 //         if (targetFeatures.includes(key)) {
 //             property_data[key] = oneProperty[key];
 //         }
 //     }
-//     results['property_data'] = property_data;
-//     ctx.body = results;
+
+//     // address for this property
+//     const lat = oneProperty['latitude'] / 1000000.0;
+//     const lon = oneProperty['longitude'] / 1000000.0;
+//     const address = await getAddress(lat, lon);
+//     // const address = {};
+
+//     // zpid for this property
+//     const zpid = await getZpid(address);
+
+//     // get image url from realestate api
+//     var imageURL = await getImages(zpid);
+
+//     // populate the response
+//     var body = {};
+//     body['features'] = property_data;
+//     body['latitude'] = lat;
+//     body['longitude'] = lon;
+//     body['parcelid'] = oneProperty['parcelid'];
+//     body['address'] = address;
+//     body['zpid'] = zpid;
+//     body['images'] = imageURL;
+//     ctx.body = body;
 // });
-
-// router.get("/test", ctx => {
-//     const rs = testData();
-//     ctx.response.set("content-type", "application/json")
-//     ctx.body = rs;
-// })
-
-router.get("/dev", async ctx => {
-    const oneProperty = await getRandomProperty();
-    ctx.response.set("content-type", "application/json");
-    ctx.body = oneProperty;
-});
-
-router.get("/property", async ctx => {
-
-    // random property features
-    const oneProperty = await getRandomProperty();
-    ctx.response.set("content-type", "application/json");
-
-    var property_data = {};
-    for (key in oneProperty) {
-        if (targetFeatures.includes(key)) {
-            property_data[key] = oneProperty[key];
-        }
-    }
-
-    // address for this property
-    const lat = oneProperty['latitude'] / 1000000.0;
-    const lon = oneProperty['longitude'] / 1000000.0;
-    const address = await getAddress(lat, lon);
-    // const address = {};
-
-    // zpid for this property
-    const zpid = await getZpid(address);
-
-    // get image url from realestate api
-    var imageURL = await getImages(zpid);
-
-    // populate the response
-    var body = {};
-    body['features'] = property_data;
-    body['latitude'] = lat;
-    body['longitude'] = lon;
-    body['parcelid'] = oneProperty['parcelid'];
-    body['address'] = address;
-    body['zpid'] = zpid;
-    body['images'] = imageURL;
-    ctx.body = body;
-});
 
 app.use(cors({
     origin: true,
@@ -90,6 +86,7 @@ app.use(router.routes());
 
 startDatabase().then(async () => {
     // await populateDatabase();
+    updateCurrentProperty();
 
     app.listen(portNumber, () => {
         console.log(`listening on port ${portNumber}`);
@@ -183,4 +180,41 @@ async function getImages(zpid) {
         return [];
     }
     return results;
+}
+
+async function updateCurrentProperty() {
+    // random property features
+    const oneProperty = await getRandomProperty();
+    // ctx.response.set("content-type", "application/json");
+
+    var property_data = {};
+    for (key in oneProperty) {
+        if (targetFeatures.includes(key)) {
+            property_data[key] = oneProperty[key];
+        }
+    }
+
+    // address for this property
+    const lat = oneProperty['latitude'] / 1000000.0;
+    const lon = oneProperty['longitude'] / 1000000.0;
+    const address = await getAddress(lat, lon);
+    // const address = {};
+
+    // zpid for this property
+    const zpid = await getZpid(address);
+
+    // get image url from realestate api
+    var imageURL = await getImages(zpid);
+
+    // populate the response
+    var body = {};
+    body['features'] = property_data;
+    body['latitude'] = lat;
+    body['longitude'] = lon;
+    body['parcelid'] = oneProperty['parcelid'];
+    body['address'] = address;
+    body['zpid'] = zpid;
+    body['images'] = imageURL;
+
+    currentProperty = body;
 }
