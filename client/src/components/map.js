@@ -4,11 +4,14 @@ import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 class MyMap extends React.Component {
 
     render() {
+        if (!this.props.latLong.lat || !this.props.latLong.lng) {
+            return null
+        }
         return (
             <Map
                 google={this.props.google}
                 zoom={11}
-                center={this.props.latLong}
+                initialCenter={this.props.latLong}
                 streetViewControl={false}
                 mapTypeControl={false}
                 fullscreenControl={false}
