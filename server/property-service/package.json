@@ -20,7 +20,6 @@
     "koa-router": "^7.4.0",
     "koa2-cors": "^2.0.6",
     "mongodb": "^3.2.7",
-    "mongodb-memory-server": "^5.1.5",
     "xml-parse-from-string": "^1.0.1",
     "xml2js": "^0.4.19"
   },
