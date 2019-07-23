@@ -46,7 +46,8 @@ async function getRandomProperty() {
                             .then(resp => resp.length ? resp[0] : {});
     return db
             .collection(collectionName)
-            .find({'parcelid':randomProperty.parcelid})
+            // .find({'parcelid':randomProperty.parcelid})
+            .find({'parcelid':14313907})
             .toArray()
             .then((resp) => resp.length ? resp[0] : {});
 }

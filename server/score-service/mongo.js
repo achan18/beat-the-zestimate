@@ -58,7 +58,7 @@ async function insertScore(name, userZestimate, parcelid, score) {
   const db = connection.db(dbName);
   const collection = db.collection('scores');
 
-  const found = (await collection.find({'name': name}).toArray()).length != 0;
+  const found = (await collection.find({'name': name, 'parcelid': parcelid}).toArray()).length != 0;
   if (!found) {
     await collection.insertOne({
       name: name,

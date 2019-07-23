@@ -1,28 +1,28 @@
 {
-    "address": {
-        "city": "Norwalk",
-        "country": "USA",
-        "label": "14411 Pontlavoy Ave, Norwalk, CA 90650, USA",
-        "state": "CA",
-        "street_name": "14411 Pontlavoy Ave",
-        "zip_code": "90650"
-    },
     "features": {
-        "bathroomcnt": 1,
-        "bedroomcnt": 3,
-        "finishedsquarefeet12": 980,
-        "fireplacecnt": "",
-        "garagecarcnt": "",
+        "bathroomcnt": 5.5,
+        "bedroomcnt": 5,
+        "finishedsquarefeet12": 5670,
+        "fireplacecnt": 1,
+        "garagecarcnt": 2,
         "hashottuborspa": "",
-        "lotsizesquarefeet": 6001,
-        "numberofstories": "",
+        "lotsizesquarefeet": 7560,
         "poolcnt": "",
-        "roomcnt": 0,
-        "yearbuilt": 1954
+        "roomcnt": 6,
+        "yearbuilt": 2006,
+        "numberofstories": 1
     },
-    "images": [],
-    "latitude": 33.900165,
-    "longitude": -118.049413,
-    "parcelid": 12753517,
-    "zpid": 21400917
-}
+    "latitude": 33.623026,
+    "longitude": -117.85277,
+    "parcelid": 14313907,
+    "address": {
+        "label": "1985 Port Ramsgate Pl, Newport Beach, CA 92660, USA",
+        "street_name": "1985 Port Ramsgate Pl",
+        "city": "Newport Beach",
+        "state": "CA",
+        "zip_code": "92660",
+        "country": "USA"
+    },
+    "zpid": 25494984,
+    "images": []
+    }
